@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from "./logo.svg";
+import { MyFirstComponent } from "./MyFirstComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import {Fragment} from "react";
+
+const myName = "Rodney";
+
+export const App = () => <>
+  <h1>Hello World!</h1>
+  <p>my name is {myName}</p>
+  {/* <img src={logo} alt="logo" /> */}
+  <MyFirstComponent 
+    greeting="Hello Rod Nolan"
+    p1="v1"
+    p2="v2"
+    p3="v3"
+  />
+</>;
+
+/*
+
+let functionArguments = {
+  greeting: "Hello Rod",
+  p1:"v1",
+  p2:"v2",
+  p3:"v3"
 }
 
-export default App;
+MyFirstComponent(functionArguments)
+
+*/
+
+/*
+export function App() {
+  const myName = "Rodney";
+  return (
+    <>
+      <h1>Hello World!</h1>
+      <p>my name is {myName}</p>
+      <img src={logo} alt="logo" />
+    </>
+  );
+}
+*/
