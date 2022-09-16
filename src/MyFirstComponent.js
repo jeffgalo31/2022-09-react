@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 // export const MyFirstComponent = (props) => <>
 //     {props.greeting}<br />
@@ -28,11 +29,16 @@ export const MyFirstComponent = ({ greeting, p1, p2, p3 }) => <>
 </>;
 */
 
-export const MyFirstComponent = ({ p1, ...props }) => <>
-  {p1}<br />
+export const MyFirstComponent = ({ greeting, ...props }) => <>
+  <h1>{greeting}</h1>
   <MySecondComponent 
     {...props} 
   />
 </>;
 
-
+MyFirstComponent.propTypes = {
+  greeting: PropTypes.string.isRequired,
+  p1: PropTypes.number.isRequired,
+  p2: PropTypes.number.isRequired,
+  p3: PropTypes.number,
+}
