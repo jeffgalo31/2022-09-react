@@ -1,29 +1,25 @@
-import React from "react";
+import { useRef } from "react";
 
-export class Child extends React.Component {
+export const Child = ({person, personUpdaterFunction}) => {
 
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.fnRef = React.createRef();
-    this.lnRef = React.createRef();
-  }
-  handleSubmit(event) {
+  const fnRef = useRef();
+  const lnRef = useRef();
+  
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const firstNameValueFromFormField = this.fnRef.current.value;
-    const lastNameValueFromFormField = this.lnRef.current.value;
-    this.props.personUpdaterFunction({
+    const firstNameValueFromFormField = fnRef.current.value;
+    const lastNameValueFromFormField = lnRef.current.value;
+    personUpdaterFunction({
       fn: firstNameValueFromFormField,
       ln: lastNameValueFromFormField
     });
   }
 
-  handleChange(event) {
+  const handleChange = (event) => {
     console.log('the form field was changed')
     console.log(event.target.id, event.target.value);
-    this.props.personUpdaterFunction({
-      ...this.props.person, ...{[event.target.id]: event.target.value}
+    personUpdaterFunction({
+      ...person, ...{[event.target.id]: event.target.value}
     });
 
     // note the use of the [] on the LEFT side of the colon character in the object defined above
@@ -32,37 +28,33 @@ export class Child extends React.Component {
     // because I don't have to hard code {fn: event.target.value} or {ln: event.target.value}
   }
 
-  render() {
-    return <>
-      <h2>Child</h2>
-      <p>{this.props.person.fn} {this.props.person.ln}</p>
-      <button onClick={() => {
-        this.props.personUpdaterFunction({...this.props.person, ln: 'Barker'});
-      }}>this WILL work - called from child</button>
+  return <>
+    <h2>Child</h2>
+    <p>{person.fn} {person.ln}</p>
+    <button onClick={() => {
+      personUpdaterFunction({...person, ln: 'Barker'});
+    }}>this WILL work - called from child</button>
 
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="fn">First Name</label>
-        <input 
-          id="fn" 
-          type="text" 
-          placeholder={this.props.person.fn} 
-          value={this.props.person.fn}
-          onChange={this.handleChange} 
-          ref={this.fnRef}
-          />
-        <label htmlFor="ln">Last Name</label>
-        <input 
-          id="ln" 
-          type="text" 
-          placeholder={this.props.person.ln} 
-          value={this.props.person.ln}
-          onChange={this.handleChange} 
-          ref={this.lnRef}
-          />
-        <input type="submit" />
-      </form>
-
-    </>
-  }
-
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="fn">First Name</label>
+      <input 
+        id="fn" 
+        type="text" 
+        placeholder={person.fn} 
+        value={person.fn}
+        onChange={handleChange} 
+        ref={fnRef}
+        />
+      <label htmlFor="ln">Last Name</label>
+      <input 
+        id="ln" 
+        type="text" 
+        placeholder={person.ln} 
+        value={person.ln}
+        onChange={handleChange} 
+        ref={lnRef}
+        />
+      <input type="submit" />
+    </form>
+  </>;
 }
