@@ -7,11 +7,13 @@ import { MyFirstComponent } from "./MyFirstComponent";
 
 
 // export function App() {
-  //   return <div>bzdljvbdfkjlbv</div>
-  // }
+//   return <div>bzdljvbdfkjlbv</div>
+// }
+
+const myName = "bob";
 export const App = () => <>
   <h1>Hello World!</h1>
-  {/* <p>my name is {myName}</p> */}
+  <p>my name is {myName}</p>
   {/* <img src={logo} alt="logo" /> */}
   <MyFirstComponent 
     greeting="Hello Rod Nolan"

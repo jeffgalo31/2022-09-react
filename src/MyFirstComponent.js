@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 // export const MyFirstComponent = (props) => <>
 //     {props.greeting}<br />
@@ -29,12 +30,32 @@ export const MyFirstComponent = ({ greeting, p1, p2, p3 }) => <>
 </>;
 */
 
-export const MyFirstComponent = ({ greeting, ...props }) => <>
-  <h1>{greeting}</h1>
-  <MySecondComponent 
-    {...props} 
-  />
-</>;
+export const MyFirstComponent = ({ greeting, ...props }) => {
+  // defined default values for state
+
+  // const resultsfromusestate = useState(0);
+  // let counter = resultsfromusestate[0];
+  // let setCounter = resultsfromusestate[1];
+
+  const [counter, setCounter] = useState(0);
+
+  return <>
+    <h1>{greeting}</h1>
+    <p>state: {counter}</p>
+    <button onClick={() => setCounter(5)}>update counter</button>
+    <br />
+
+    {/* standard HTML
+    <button click="alert('hello')">update counter</button> */}
+
+
+
+    <MySecondComponent 
+      {...props} 
+    />
+  </>;
+}
+
 
 MyFirstComponent.propTypes = {
   greeting: PropTypes.string.isRequired,
