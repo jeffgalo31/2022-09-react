@@ -7,7 +7,8 @@ export class MyClassComponent extends React.Component {
     super(props);
     this.state = {
       fn: "Rod",
-      ln: "Nolan"
+      ln: "Nolan",
+      someString: 'abc'
     };
   }
 
@@ -15,6 +16,25 @@ export class MyClassComponent extends React.Component {
     return <>
       <p>{this.props.description}</p>
       <p>{this.props.optionalSubDescription}</p>
+
+      <p>state: 
+        {this.state.someString} 
+        {this.state.fn} 
+        {this.state.ln}
+      </p>
+      <button onClick={ () => {
+        this.setState(
+          {someString: 'bob'}, 
+          (  ) => {
+            console.log('at this point, I know state has been updated', this.state.someString);
+          }
+        );
+        // this.state = {...this.state, someString: 'bob'}
+        console.log('this is proof that setState is async', this.state.someString);
+
+      }}
+      >update string version of state</button>
+
 
       <p>{this.state.fn} {this.state.ln}</p>
       <button onClick={ () => {

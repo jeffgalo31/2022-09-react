@@ -38,11 +38,22 @@ export const MyFirstComponent = ({ greeting, ...props }) => {
   // let setCounter = resultsfromusestate[1];
 
   const [counter, setCounter] = useState(0);
+  const [person, setPerson] = useState({
+    fn: 'mickey',
+    mn: 'billy',
+    ln: 'mouse',
+  });
 
   return <>
     <h1>{greeting}</h1>
     <p>state: {counter}</p>
+    <p>person: {person.fn} {person.mn} {person.ln}</p>
     <button onClick={() => setCounter(5)}>update counter</button>
+    
+    <button onClick={() => setPerson({...person, fn: 'bob'})}>update person fn</button>
+    <button onClick={() => setPerson({...person, ln: 'barker'})}>update person ln</button>
+    <button onClick={() => setPerson({...person, fn: 'bob', ln: 'barker'})}>update whole person</button>
+    
     <br />
 
     {/* standard HTML
@@ -50,8 +61,8 @@ export const MyFirstComponent = ({ greeting, ...props }) => {
 
 
 
-    <MySecondComponent 
-      {...props} 
+    <MySecondComponent
+      {...props}
     />
   </>;
 }
