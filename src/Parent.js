@@ -1,10 +1,11 @@
 import { useState } from "react";
-// import { Child } from "./Child"
-import { ChildAddForm } from "./ChildAddForm";
 import { v4 as uuidv4 } from 'uuid';
+import { ChildAddForm } from "./ChildAddForm";
+import { ChildEditForm } from "./ChildEditForm";
 
 export const Parent = () => {
 
+  const [personToEdit, setPersonToEdit] = useState();
   const [people, setPeople] = useState([
     {
       id: 123,
@@ -19,11 +20,28 @@ export const Parent = () => {
   ]);
 
   const addPerson = (person) => {
-    let peopleCopy = [...people]; // shallow copy Object.assign AND ...spread operator
+    const peopleCopy = [...people]; // shallow copy Object.assign AND ...spread operator
 
     peopleCopy.push({ ...person, id: uuidv4() });
+
     setPeople(peopleCopy);
   }
+
+  const editPerson = (person) => {
+    const peopleCopy = [...people];
+
+    // figure out where in the array this item lives
+    let indexOfItemToEdit = people.findIndex((element) => element.id === person.id)
+    if (indexOfItemToEdit < 0) {
+      console.log('there is a problem');
+    } else {
+      peopleCopy[indexOfItemToEdit] = person;
+      setPeople(peopleCopy);
+    }
+
+    console.log('replace the existing object with id ', person.id);
+  }
+
 
   return <>
     <h1>Parent</h1>
@@ -31,33 +49,29 @@ export const Parent = () => {
       {
         people.map(
           (person) => {
-            return <li key={person.id}>{person.fn} {person.ln} </li>
+            return <li key={person.id}>
+              <button
+                onClick={() => setPersonToEdit(person)}
+              >
+                edit
+              </button>
+              {person.fn} {person.ln}
+            </li>
           }
         )
       }
     </ol>
 
-    <button onClick={() => {
-      // people[1].fn = "Jack";
-      // console.log(people[1]);
-
-      let peopleCopy = [...people]; // shallow copy Object.assign AND ...spread operator
-
-      const newBill = { ...peopleCopy[1] };
-      newBill.fn = "Bob";
-
-      peopleCopy[1] = newBill;
-
-      setPeople(peopleCopy);
-    }}>
-      update bill
-    </button>
     <ChildAddForm
       personAdderFunction={addPerson}
     />
-    {/* <Child
-      person={person}
-      personUpdaterFunction={setPerson}
-    /> */}
+
+    {
+      personToEdit &&
+      <ChildEditForm
+        person={personToEdit}
+        personUpdaterFunction={editPerson}
+      />
+    }
   </>
 }
