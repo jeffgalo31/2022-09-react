@@ -17,6 +17,7 @@ export const Parent = () => {
 
   return <>
     <h1>Parent</h1>
+    <p>{person.fn} {person.ln}</p>
 
 
     {someLocalVar}<br />

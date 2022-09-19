@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // export const Child = ({person = {fn: '', ln: ''}, personUpdaterFunction = () => {}}) => {
 export const Child = ({person, personUpdaterFunction}) => {
 
+
+  const [personLocal, setPersonLocal] = useState(person);
   const fnRef = useRef();
   const lnRef = useRef();
   
@@ -17,11 +19,18 @@ export const Child = ({person, personUpdaterFunction}) => {
   }
 
   const handleChange = (event) => {
-    console.log('the form field was changed')
+    console.log('the form field was changed');
     console.log(event.target.id, event.target.value);
-    personUpdaterFunction({
-      ...person, ...{[event.target.id]: event.target.value}
+    setPersonLocal({
+      ...personLocal, ...{[event.target.id]: event.target.value}
     });
+
+    // setPersonLocal(
+    //   {
+    //     fn: document.getElementById('fn').value,
+    //     ln: document.getElementById('ln').value
+    //   }
+    // )
 
     // note the use of the [] on the LEFT side of the colon character in the object defined above
     // this allows me to reference a variable as the property's NAME 
@@ -31,7 +40,7 @@ export const Child = ({person, personUpdaterFunction}) => {
 
   return <>
     <h2>Child</h2>
-    <p>{person.fn} {person.ln}</p>
+    <p>{personLocal.fn} {personLocal.ln}</p>
     <button onClick={() => {
       personUpdaterFunction({...person, ln: 'Barker'});
     }}>this WILL work - called from child</button>
@@ -41,8 +50,7 @@ export const Child = ({person, personUpdaterFunction}) => {
       <input 
         id="fn" 
         type="text" 
-        placeholder={person.fn} 
-        value={person.fn}
+        value={personLocal.fn}
         onChange={handleChange} 
         ref={fnRef}
         />
@@ -50,8 +58,7 @@ export const Child = ({person, personUpdaterFunction}) => {
       <input 
         id="ln" 
         type="text" 
-        placeholder={person.ln} 
-        value={person.ln}
+        value={personLocal.ln}
         onChange={handleChange} 
         ref={lnRef}
         />
