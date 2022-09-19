@@ -10,6 +10,11 @@ export const Parent = () => {
   });
   // state changes DO trigger a re-render
 
+  const buttonClickHandler = (event) => {
+    // this WILL trigger a re-render
+    setPerson({ ...person, fn: event.target.innerText });
+  }
+
   return <>
     <h1>Parent</h1>
 
@@ -21,15 +26,13 @@ export const Parent = () => {
       console.log(someLocalVar);
     }}>update a local var</button>
 
-    <button onClick={() => {
-    // this WILL trigger a re-render
-      setPerson({...person, fn: 'Bob'});
-    }}>this WILL work - called from parent</button>
+    <button onClick={ buttonClickHandler }>Bob</button>
+    <button onClick={ buttonClickHandler }>Bill</button>
 
-    <Child 
-      person={person} 
-      personUpdaterFunction={setPerson} 
+    <Child
+      person={person}
+      personUpdaterFunction={setPerson}
     />
-  
+
   </>
 }

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 
+// export const Child = ({person = {fn: '', ln: ''}, personUpdaterFunction = () => {}}) => {
 export const Child = ({person, personUpdaterFunction}) => {
 
   const fnRef = useRef();

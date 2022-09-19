@@ -12,6 +12,13 @@ export class MyClassComponent extends React.Component {
     };
   }
 
+  clickHandlerFunction = function () {
+    console.log(this);
+    this.setState({
+      fn: 'bob'
+    });
+  }
+
   render() {
     return <>
       <p>{this.props.description}</p>
@@ -37,12 +44,7 @@ export class MyClassComponent extends React.Component {
 
 
       <p>{this.state.fn} {this.state.ln}</p>
-      <button onClick={ () => {
-        this.setState({
-          fn: 'bob'
-        });
-      }}
-      >update fn</button>
+      <button onClick={ this.clickHandlerFunction }>update fn</button>
 
       <button onClick={ () => {
         this.setState({
@@ -57,6 +59,11 @@ export class MyClassComponent extends React.Component {
 }
 
 MyClassComponent.propTypes = {
+  // person: PropTypes.shape({
+  //   fn: PropTypes.string.isRequired,
+  //   mn: PropTypes.string,
+  //   ln: PropTypes.string.isRequired
+  // }).isRequired,
   description: PropTypes.string.isRequired,
   optionalSubDescription: PropTypes.string
 };
