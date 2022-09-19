@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { ChildAddForm } from "./ChildAddForm";
 import { ChildEditForm } from "./ChildEditForm";
 
 export const Parent = () => {
 
-  const [personToEdit, setPersonToEdit] = useState();
+  const [personToEdit, setPersonToEdit] = useState(    );
   const [people, setPeople] = useState([
-    {
-      id: 123,
-      fn: 'Mickey',
-      ln: 'Mouse'
-    },
-    {
-      id: 543,
-      fn: 'Bill',
-      ln: 'Gates'
-    },
+  //   {
+  //     id: 123,
+  //     fn: 'Mickey',
+  //     ln: 'Mouse'
+  //   },
+  //   {
+  //     id: 543,
+  //     fn: 'Bill',
+  //     ln: 'Gates'
+  //   },
   ]);
 
   const addPerson = (person) => {
@@ -37,14 +37,40 @@ export const Parent = () => {
     } else {
       peopleCopy[indexOfItemToEdit] = person;
       setPeople(peopleCopy);
+      setPersonToEdit();
     }
 
     console.log('replace the existing object with id ', person.id);
   }
 
+  const getUsersFromAPI = async () => {
+    let url = "https://gorest.co.in/public-api/users";
+    const response = await fetch(url);
+    const responseAsJSON = response.ok ? await response.json() : null;
+    const data = responseAsJSON && responseAsJSON.data;
+    setPeople(data);
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      let url = "https://gorest.co.in/public-api/users";
+      const response = await fetch(url);
+      const responseAsJSON = response.ok ? await response.json() : null;
+      const data = responseAsJSON && responseAsJSON.data;
+      setPeople(data);
+    }
+    fetchData();
+  }, []);
+
 
   return <>
     <h1>Parent</h1>
+
+    {/* <button
+      onClick={() => getUsersFromAPI()}
+    >
+      get the data
+    </button> */}
     <ol>
       {
         people.map(
@@ -55,7 +81,7 @@ export const Parent = () => {
               >
                 edit
               </button>
-              {person.fn} {person.ln}
+              {person.name}
             </li>
           }
         )
