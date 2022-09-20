@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export const ChildAddForm = ({personAdderFunction}) => {
+export const ChildAddForm  = ({personAdderFunction}) => {
 
   const fnRef = useRef();
   const lnRef = useRef();
@@ -47,7 +47,7 @@ export const ChildAddForm = ({personAdderFunction}) => {
         type="text"
         ref={lnRef}
         />
-      <input type="submit" />
+      <input type="Edit" />
     </form>
   </>;
 }
