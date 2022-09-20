@@ -4,12 +4,15 @@ import './index.css';
 // import {App} from './App';
 import reportWebVitals from './reportWebVitals';
 import { Parent } from './Parent';
+import { HomeWorkForm } from './HomeWorkForm';
+import { MyClassComponent } from './MyClassComponent';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <StrictMode>
     {/* <App /> */}
-    <Parent />
+    <HomeWorkForm />
   </StrictMode>
 );
 
