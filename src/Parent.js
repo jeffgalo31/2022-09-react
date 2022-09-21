@@ -5,18 +5,18 @@ import { ChildEditForm } from "./ChildEditForm";
 
 export const Parent = () => {
 
-  const [personToEdit, setPersonToEdit] = useState(    );
+  const [personToEdit, setPersonToEdit] = useState();
   const [people, setPeople] = useState([
-  //   {
-  //     id: 123,
-  //     fn: 'Mickey',
-  //     ln: 'Mouse'
-  //   },
-  //   {
-  //     id: 543,
-  //     fn: 'Bill',
-  //     ln: 'Gates'
-  //   },
+    //   {
+    //     id: 123,
+    //     fn: 'Mickey',
+    //     ln: 'Mouse'
+    //   },
+    //   {
+    //     id: 543,
+    //     fn: 'Bill',
+    //     ln: 'Gates'
+    //   },
   ]);
 
   const addPerson = (person) => {
