@@ -16,3 +16,44 @@ code {
   border: 1px solid;
   text-align: center;
 }
+
+.titlePage {
+  text-align: center;
+}
+
+.infoTable{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.infoTable td, #infoTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.infoTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.infoTable tr:hover {background-color: #ddd;}
+
+.infoTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+}
+
+.titleTag {
+  padding: 5px;
+  text-align: center;
+  background: black;
+  color: white;
+  font-size: 30px;
+}
+
+label {float: left; width: 6em; text-align: left;}
+input, textarea {text-align: left;}
+input.submit  {margin-left: 6em;}
+/* additionally give the button and the labels the same font to align the button better */
+label, input.submit {font: normal 0.8em Verdana, Geneva, Arial, Helvetica, sans-serif;}

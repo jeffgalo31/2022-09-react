@@ -30,8 +30,6 @@ export const ChildAddForm  = ({personAdderFunction}) => {
   // }
 
   return <>
-    
-    
     <h2>Person Add Form (uncontrolled componnent)</h2>
 
     <form onSubmit={handleSubmit}>

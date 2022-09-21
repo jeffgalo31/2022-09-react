@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { CreateTable } from "./CreateTable";
+import { AddPerson } from "./AddPerson";
 
 export const HomeWorkForm = () => {
 
@@ -17,14 +18,24 @@ export const HomeWorkForm = () => {
       setPeople(data);
     }
     fetchData();
-  }, []);  
+  }, []);
 
-  //console.log(people);
+  const addPerson = (person) => {
+    const peopleCopy = [...people]; // shallow copy Object.assign AND ...spread operator
+
+    peopleCopy.push({ ...person, id: uuidv4() });
+
+    setPeople(peopleCopy);
+  }
 
   return <>
     <h1>Homework 5</h1>
     <CreateTable
-      tableInformation={people}
+      tableInformation={[...people]}
     />
+    <AddPerson
+      personAdderFunction={addPerson}
+    />
+
   </>
 }

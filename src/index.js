@@ -6,13 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { Parent } from './Parent';
 import { HomeWorkForm } from './HomeWorkForm';
 import { MyClassComponent } from './MyClassComponent';
+import { Component1 } from './Component1';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <StrictMode>
     {/* <App /> */}
-    <HomeWorkForm />
+    <Component1 />
   </StrictMode>
 );
 
