@@ -63,6 +63,17 @@ export const Parent = () => {
   }, []);
 
 
+  const isNiceOutside = true;
+  const isSunnyOutside = true;
+
+  if(isNiceOutside){
+return <>nice day</>
+  }
+  else if (isSunnyOutside){
+    return <>nice Sunny day</>
+  }
+
+
   return <>
     <h1>Parent</h1>
 
