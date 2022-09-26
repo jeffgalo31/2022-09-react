@@ -57,3 +57,10 @@ input, textarea {text-align: left;}
 input.submit  {margin-left: 6em;}
 /* additionally give the button and the labels the same font to align the button better */
 label, input.submit {font: normal 0.8em Verdana, Geneva, Arial, Helvetica, sans-serif;}
+
+input[type=radio],
+input.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+}
